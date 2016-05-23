@@ -180,6 +180,8 @@
                     case 'h':
                     case 'H':
                         return actualFormat.toLowerCase().indexOf('h') !== -1;
+                    case 'k':
+                        return actualFormat.toLowerCase().indexOf('k') !== -1;
                     case 'm':
                         return actualFormat.indexOf('m') !== -1;
                     case 's':
@@ -189,7 +191,7 @@
                 }
             },
             hasTime = function () {
-                return (isEnabled('h') || isEnabled('m') || isEnabled('s'));
+                return (isEnabled('h') || isEnabled('k') || isEnabled('m') || isEnabled('s'));
             },
 
             hasDate = function () {
@@ -252,7 +254,7 @@
                             .append($('<span>').addClass(options.icons.down))));
                 }
                 if (isEnabled('m')) {
-                    if (isEnabled('h')) {
+                    if (isEnabled('h') || isEnabled('k')) {
                         topRow.append($('<td>').addClass('separator'));
                         middleRow.append($('<td>').addClass('separator').html(':'));
                         bottomRow.append($('<td>').addClass('separator'));
@@ -303,7 +305,7 @@
                         .append($('<table>').addClass('table-condensed')),
                     ret = [getTimePickerMainTemplate()];
 
-                if (isEnabled('h')) {
+                if (isEnabled('h') || isEnabled('k')) {
                     ret.push(hoursView);
                 }
                 if (isEnabled('m')) {
